@@ -37,5 +37,39 @@ export default StyleSheet.create({
         color: '#737380'
     },
 
+    eventList: {
+        marginTop: 32,
+    },
+
+    event: {
+        padding: 24,
+        borderRadius: 8,
+        backgroundColor: '#FFF',
+        marginBottom: 16,
+    },    
     
+    usuarioProperty: {
+        fontSize: 14,
+        color: '#41414d',
+        fontWeight: 'bold'
+    },
+
+    usuarioValue: {
+        marginTop: 8,
+        fontSize: 15,
+        marginBottom: 24,
+        color: '#737380'
+    },
+
+    detailsButton: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+
+    detailsButtonText: {
+        color: '#8c52ff',
+        fontSize: 15,
+        fontWeight: 'bold'
+    }
 });
