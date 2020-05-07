@@ -5,10 +5,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const AppStack = createStackNavigator();
 import Event from './pages/Event';
+import Detail from './pages/Detail';
 import Logon from './pages/Logon';
 import Perfil from './pages/Perfil';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
+
 
 
 export default function Routes() {
@@ -17,6 +19,7 @@ export default function Routes() {
 
             <AppStack.Navigator screenOptions={{headerShown: false }}>
                 <AppStack.Screen name="Event" component={Event} />
+                <AppStack.Screen name="Detail" component={Detail} />
                 <AppStack.Screen name="Logon" component={Logon} /> 
                 <AppStack.Screen name="Perfil" component={Perfil} />
                 <AppStack.Screen name="Profile" component={Profile} />
@@ -25,4 +28,4 @@ export default function Routes() {
 
         </NavigationContainer>
     ); 
-}
+} 
