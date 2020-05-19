@@ -1,18 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { View, FlatList, Image, Text, TouchableOpacity } from 'react-native';
+
+import api from '../../services/api';
 
 import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
 export default function Event() {
+    const [events, setEvents] = useState([]);
     const navigation = useNavigation();
 
     function navigationToDetail() {
         navigation.navigate('Detail');
     }
+
+    async function loadEvents() {
+        const response = await api.get('events').then(response => {
+            setEvents(response.data);
+        })
+
+       
+    }
+
+    useEffect(() => {
+        
+    },[]);
 
     return(
         <View style={styles.container}>
@@ -29,13 +44,15 @@ export default function Event() {
             <FlatList 
                 data={[1, 2, 3, 4]}
                 style={styles.eventList}
-                renderItem={() => (
+                keyExtractor={events => String(events.id)}
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item: events }) => (
                     <View style={styles.event}>
                         <Text style={styles.usuarioProperty}>Organizador:</Text>
                         <Text style={styles.usuarioValue}>Patrick</Text>
 
                         <Text style={styles.usuarioProperty}>Evento:</Text>
-                        <Text style={styles.usuarioValue}>Apresentação Pi</Text>
+                        <Text style={styles.usuarioValue}>{events.name}</Text>
 
                         <Text style={styles.usuarioProperty}>Preço:</Text>
                         <Text style={styles.usuarioValue}>R$ 50,00</Text>
