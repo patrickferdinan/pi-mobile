@@ -9,7 +9,7 @@ import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
-export default function Event() {
+export default function Events() {
     const [events, setEvents] = useState([]);
     const navigation = useNavigation();
 
@@ -18,16 +18,13 @@ export default function Event() {
     }
 
     async function loadEvents() {
-        const response = await api.get('events').then(response => {
-            setEvents(response.data);
-        })
-
-       
+        const response = await api.get('events');
+        setEvents(response.data);  
     }
 
     useEffect(() => {
-        
-    },[]);
+        loadEvents();
+    }, []);
 
     return(
         <View style={styles.container}>
@@ -42,20 +39,20 @@ export default function Event() {
             <Text style={styles.description}>Participe dos melhores eventos no mundo.</Text>
 
             <FlatList 
-                data={[1, 2, 3, 4]}
+                data={events}
                 style={styles.eventList}
-                keyExtractor={events => String(events.id)}
+                keyExtractor={event => String(event.id)}
                 showsVerticalScrollIndicator={false}
-                renderItem={({ item: events }) => (
+                renderItem={({ item: event }) => (
                     <View style={styles.event}>
                         <Text style={styles.usuarioProperty}>Organizador:</Text>
                         <Text style={styles.usuarioValue}>Patrick</Text>
 
                         <Text style={styles.usuarioProperty}>Evento:</Text>
-                        <Text style={styles.usuarioValue}>{events.name}</Text>
+                        <Text style={styles.usuarioValue}>{event.name}</Text>
 
                         <Text style={styles.usuarioProperty}>Preço:</Text>
-                        <Text style={styles.usuarioValue}>R$ 50,00</Text>
+                        <Text style={styles.usuarioValue}>{event.price}</Text>
 
                         <TouchableOpacity 
                             style={styles.detailsButton} 
