@@ -13,8 +13,8 @@ export default function Events() {
     const [events, setEvents] = useState([]);
     const navigation = useNavigation();
 
-    function navigationToDetail() {
-        navigation.navigate('Detail');
+    function navigationToDetail(event) {
+        navigation.navigate('Detail', { event });
     }
 
     async function loadEvents() {
@@ -31,7 +31,7 @@ export default function Events() {
             <View style={styles.header}>
                 <Image source={logoImg} />
                 <Text style={styles.headerText}>
-                    Total de <Text style={styles.headerTextBold}> 0 eventos</Text>.
+                    Total de <Text style={styles.headerTextBold}>{events.length}</Text>.
                 </Text>
             </View>
 
@@ -52,11 +52,13 @@ export default function Events() {
                         <Text style={styles.usuarioValue}>{event.nameEvent}</Text>
 
                         <Text style={styles.usuarioProperty}>Preço:</Text>
-                        <Text style={styles.usuarioValue}>{event.price}</Text>
-
+                        <Text style={styles.usuarioValue}>
+                        {Intl.NumberFormat('pt-Br', { style: 'currency', currency: 'BRL' })
+                        .format(event.price)}
+                        </Text>
                         <TouchableOpacity 
                             style={styles.detailsButton} 
-                            onPress={navigationToDetail}
+                            onPress={() => navigationToDetail(event)}
                         >
                             <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
                             <Feather name="arrow-right" size={16} color="#8c52ff" />

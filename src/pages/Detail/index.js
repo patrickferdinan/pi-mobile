@@ -1,6 +1,6 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { View, Text, Image, TouchableOpacity, Linking } from 'react-native';
 import * as MailComposer from 'expo-mail-composer';
 
@@ -12,7 +12,10 @@ import styles from './styles';
 
 export default function Detail() {
     const navigation = useNavigation();
-    const message = 'Olá <organizador>, gostaria de participar do seu evento: "Projeto Integrador" ';
+    const route = useRoute();
+
+    const event = route.params.event;
+    const message = `Olá ${event.user}, gostaria de participar do seu evento: ${event.nameEvent} `;
 
     function navigateBack() {
         navigation.goBack()
@@ -20,18 +23,18 @@ export default function Detail() {
 
     function sendMail() {
         MailComposer.composeAsync({
-            subject: 'Projeto Integrador',
-            recipients: ['patrick.ferdinan@hotmail.com'],
+            subject: `Nome do organizador: ${event.user}`,
+            recipients: [event.email],
             body: message,
         })
     }
 
     function sendWhatsapp() {
-        Linking.openURL(`whatsapp://send?phone=5534988123346 Gtext=${message}`);
+        Linking.openURL(`whatsapp://send?phone=${event.phone} &text=${message}`);
     }
 
-    return(
-        <View style={styles.container}> 
+    return (
+        <View style={styles.container}>
             <View style={styles.header}>
                 <Image source={logoImg} />
 
@@ -41,14 +44,20 @@ export default function Detail() {
             </View>
 
             <View style={styles.event}>
-                <Text style={[styles.usuarioProperty, {marginTop: 0 }]}>Evento:</Text>
-                <Text style={styles.usuarioValue}>Apresentação Pi</Text>
+                <Text style={[styles.usuarioProperty, { marginTop: 0 }]}>Evento:</Text>
+                <Text style={styles.usuarioValue}>{event.nameEvent}</Text>
 
                 <Text style={styles.usuarioProperty}>Inicio do Evento:</Text>
-                <Text style={styles.usuarioValue}>01/06/2020 19:15:00</Text>
+                <Text style={styles.usuarioValue}>{event.initialData}</Text>
 
                 <Text style={styles.usuarioProperty}>Termino do Evento:</Text>
-                <Text style={styles.usuarioValue}>01/06/2020 22:40:00</Text>
+                <Text style={styles.usuarioValue}>{event.finalData}</Text>
+
+                <Text style={styles.usuarioProperty}>Preço:</Text>
+                <Text style={styles.usuarioValue}>
+                    {Intl.NumberFormat('pt-Br', { style: 'currency', currency: 'BRL' })
+                        .format(event.price)}
+                </Text>
             </View>
 
             <View style={styles.contactBox}>
