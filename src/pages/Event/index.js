@@ -31,12 +31,12 @@ export default function Events() {
             <View style={styles.header}>
                 <Image source={logoImg} />
                 <Text style={styles.headerText}>
-                    Total de <Text style={styles.headerTextBold}>{events.length}</Text>.
+                    Total de <Text style={styles.headerTextBold}>{events.length}</Text> eventos.
                 </Text>
             </View>
 
             <Text style={styles.title}>Bem-vindo!</Text>
-            <Text style={styles.description}>Participe dos melhores eventos no mundo.</Text>
+            <Text style={styles.description}>Participe dos melhores eventos.</Text>
 
             <FlatList 
                 data={events}
