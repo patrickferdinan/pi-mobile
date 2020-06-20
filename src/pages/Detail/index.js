@@ -61,7 +61,7 @@ export default function Detail() {
             </View>
 
             <View style={styles.contactBox}>
-                <Text style={styles.organization}>Participe deste evento!</Text>
+                <Text style={styles.organization}>Participe Deste Evento!</Text>
 
                 <Text style={styles.description}>Entre em contato:</Text>
 
