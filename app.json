@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "event",
-    "slug": "event",
+    "name": "Event",
+    "slug": "Event",
     "platforms": [
       "ios",
       "android",
@@ -22,7 +22,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    }
+      "supportsTablet": true,
+      "bundleIdentifier": "com.projetointegrador.event"
+    },
+    "android": {
+      "package": "com.projetointegrador.event"
+    },
+    "description": "",
+    "githubUrl": "https://github.com/patrickferdinan/pi-mobile"
   }
 }

@@ -46,10 +46,10 @@ export default function Events() {
                 renderItem={({ item: event }) => (
                     <View style={styles.event}>
                         <Text style={styles.usuarioProperty}>Organizador:</Text>
-                        <Text style={styles.usuarioValue}>{event.user}</Text>
+                        <Text style={styles.usuarioValue}>{event.userName}</Text>
 
                         <Text style={styles.usuarioProperty}>Evento:</Text>
-                        <Text style={styles.usuarioValue}>{event.nameEvent}</Text>
+                        <Text style={styles.usuarioValue}>{event.name}</Text>
 
                         <Text style={styles.usuarioProperty}>Preço:</Text>
                         <Text style={styles.usuarioValue}>

@@ -15,7 +15,7 @@ export default function Detail() {
     const route = useRoute();
 
     const event = route.params.event;
-    const message = `Olá ${event.user}, gostaria de participar do seu evento: ${event.nameEvent} `;
+    const message = `Olá ${event.userName}, gostaria de participar do seu evento: ${event.name} `;
 
     function navigateBack() {
         navigation.goBack()
@@ -23,14 +23,14 @@ export default function Detail() {
 
     function sendMail() {
         MailComposer.composeAsync({
-            subject: `Nome do organizador: ${event.user}`,
-            recipients: [event.email],
+            subject: `Nome do organizador: ${event.userName}`,
+            recipients: [event.UserEmail],
             body: message,
         })
     }
 
     function sendWhatsapp() {
-        Linking.openURL(`whatsapp://send?phone=${event.phone} &text=${message}`);
+        Linking.openURL(`whatsapp://send?phone=${event.UserPhone} &text=${message}`);
     }
 
     return (
@@ -45,7 +45,7 @@ export default function Detail() {
 
             <View style={styles.event}>
                 <Text style={[styles.usuarioProperty, { marginTop: 0 }]}>Evento:</Text>
-                <Text style={styles.usuarioValue}>{event.nameEvent}</Text>
+                <Text style={styles.usuarioValue}>{event.name}</Text>
 
                 <Text style={styles.usuarioProperty}>Inicio do Evento:</Text>
                 <Text style={styles.usuarioValue}>{event.initialData}</Text>
