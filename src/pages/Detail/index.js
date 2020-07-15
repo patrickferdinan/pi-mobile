@@ -24,13 +24,13 @@ export default function Detail() {
     function sendMail() {
         MailComposer.composeAsync({
             subject: `Nome do organizador: ${event.userName}`,
-            recipients: [event.UserEmail],
+            recipients: [event.userEmail],
             body: message,
         })
     }
 
     function sendWhatsapp() {
-        Linking.openURL(`whatsapp://send?phone=${event.UserPhone} &text=${message}`);
+        Linking.openURL(`whatsapp://send?phone=${event.userPhone} &text=${message}`);
     }
 
     return (

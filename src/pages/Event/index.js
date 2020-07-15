@@ -18,7 +18,7 @@ export default function Events() {
     }
 
     async function loadEvents() {
-        const response = await api.get('events/users');
+        const response = await api.get('/events/users');
         setEvents(response.data);  
     }
 
